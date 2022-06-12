@@ -30,7 +30,10 @@ struct HairHinge
 class Hair
 {
   public:
-    Hair();
+    Hair() = default;
+    Hair(const float _null);
+    ~Hair() = default;
+
     void render() const;
 
   private:
