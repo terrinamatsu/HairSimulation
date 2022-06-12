@@ -46,6 +46,9 @@ void NGLScene::initializeGL()
   ngl::ShaderLib::loadShader(ColourShader, "shaders/ColourVertex.glsl", "shaders/ColourFragment.glsl");
   ngl::ShaderLib::use(ColourShader);
 
+  // Initialise Hair
+  m_hairTest = std::make_unique<Hair>();
+
   // Create Circle
   ngl::VAOPrimitives::createSphere("sphere", 0.5f, 20);
 
@@ -75,6 +78,8 @@ void NGLScene::paintGL()
   ngl::VAOPrimitives::draw("sphere");
 
   ngl::ShaderLib::setUniform("MVP", m_project * m_view * m_mouseGlobalTX);
+
+  m_hairTest->Render();
 }
 
 //----------------------------------------------------------------------------------------------------------------------

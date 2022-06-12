@@ -3,6 +3,7 @@
 
 #include <ngl/Vec3.h>
 #include <ngl/Mat4.h>
+#include "Hair.h"
 
 #include "WindowParams.h"
 // this must be included after NGL includes else we get a clash with gl libs
@@ -88,6 +89,8 @@ private:
     ngl::Mat4 m_view;
     ngl::Mat4 m_project;
     ngl::Mat4 m_mouseGlobalTX;
+
+    std::unique_ptr<Hair> m_hairTest;
 };
 
 
