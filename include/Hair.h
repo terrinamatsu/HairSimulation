@@ -41,6 +41,6 @@ class Hair
     std::unique_ptr<ngl::AbstractVAO> m_vao;
 
     float m_dampingConstant = 0.5;
-}
+};
 
 #endif // HAIR_H_
