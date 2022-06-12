@@ -86,11 +86,11 @@ private:
     void toggleFullScreen();
     bool m_isFullScreen = false;
 
+    std::unique_ptr<Hair> m_hairTest;
+
     ngl::Mat4 m_view;
     ngl::Mat4 m_project;
     ngl::Mat4 m_mouseGlobalTX;
-
-    std::unique_ptr<Hair> m_hairTest;
 };
 
 

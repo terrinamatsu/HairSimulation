@@ -1,7 +1,10 @@
 #include "Hair.h"
+
+#include <ngl/Util.h>
+#include <ngl/ShaderLib.h>
 #include <ngl/VAOFactory.h>
 
-Hair::Hair(const float _null)
+Hair::Hair()
 {
   // Setup VAO
   m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
