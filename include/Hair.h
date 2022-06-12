@@ -31,7 +31,7 @@ class Hair
 {
   public:
     Hair() = default;
-    void Render();
+    void Render() const;
 
   private:
     std::vector<HairMass> m_hairNodes;
