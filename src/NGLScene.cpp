@@ -47,7 +47,7 @@ void NGLScene::initializeGL()
   ngl::ShaderLib::use(ColourShader);
 
   // Initialise Hair
-  m_hairTest = std::make_unique<Hair>(0.0f);
+  m_hairTest = std::make_unique<Hair>();
 
   // Create Circle
   ngl::VAOPrimitives::createSphere("sphere", 0.5f, 20);
