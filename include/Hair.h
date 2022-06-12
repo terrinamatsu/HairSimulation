@@ -8,6 +8,10 @@
 struct HairMass
 {
   ngl::Vec3 m_position;
+  HairMass(ngl::Vec3 _position)
+  {
+    m_position = _position;
+  }
 };
 
 struct HairSpring
