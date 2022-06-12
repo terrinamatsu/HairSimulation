@@ -79,7 +79,7 @@ void NGLScene::paintGL()
 
   ngl::ShaderLib::setUniform("MVP", m_project * m_view * m_mouseGlobalTX);
 
-  m_hairTest->Render();
+  m_hairTest->render();
 }
 
 //----------------------------------------------------------------------------------------------------------------------

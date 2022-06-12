@@ -12,7 +12,7 @@ void Hair::Hair()
   m_hairNodes.push_back(HairMass(8,8,10));
 }
 
-void Hair::Render() const
+void Hair::render() const
 {
     glPointSize(5);
 

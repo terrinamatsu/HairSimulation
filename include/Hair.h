@@ -30,8 +30,8 @@ struct HairHinge
 class Hair
 {
   public:
-    Hair() = default;
-    void Render() const;
+    Hair();
+    void render() const;
 
   private:
     std::vector<HairMass> m_hairNodes;
