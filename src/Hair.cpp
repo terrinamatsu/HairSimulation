@@ -36,7 +36,9 @@ void Hair::update(float _dt)
   // And now for the complicated bit...
 
   float hairNodeMass = 5;
+  float dragDampingConstant = 5.0f;
 
+  // Spring
   for(auto& spring : m_hairSprings)
   {
     ngl::Vec3 springForce;
@@ -46,25 +48,29 @@ void Hair::update(float _dt)
     // Add damping
     springForce = springForce - (0.5f * springForce);
 
-    spring.LeftMass->m_force -= springForce;
-    spring.RightMass->m_force += springForce;
+    spring.LeftMass->m_force += springForce;
+    spring.RightMass->m_force -= springForce;
   }
-
-  for(auto i = 1; i < m_hairNodes.size(); ++i)
+   
+  // Hinge
+  for(auto hinge : m_hairHinges)
   {
-    ngl::Vec3 Force;
-    // Spring
-    
-    // Hinge
 
-    // Gravity
-
-    // Aerodynamic Drag
-
-    // Newton's Second Law
   }
 
-  // add accelleration & reset hair forces.
+  // Gravity
+  for(auto& hair : m_hairNodes)
+  {
+    hair.m_force += hairNodeMass * ngl::Vec3(0.0f, -9.8f, 0.0f);
+  }
+
+  // Aerodynamic Drag
+  for(auto& hair : m_hairNodes)
+  {
+    hair.m_force -= hair.m_velocity * dragDampingConstant;
+  }
+
+  // Newton's Second Law (accelleration) & reset hair forces.
   for(auto& hair : m_hairNodes)
   {
     hair.m_accelleration = hair.m_force / hairNodeMass;
