@@ -122,7 +122,7 @@ void Hair::render() const
 
     m_vaoSpring->bind();
 
-    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0].m_position.m_x));
+    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0].m_x));
     m_vaoSpring->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
     m_vaoSpring->setNumIndices(SpringVerts.size());
@@ -140,7 +140,7 @@ void Hair::render() const
 
     m_vaoHinge->bind();
 
-    m_vaoHinge->setData(ngl::SimpleVAO::VertexData(HingeVerts.size() * sizeof(ngl::Vec3), HingeVerts[0].m_position.m_x));
+    m_vaoHinge->setData(ngl::SimpleVAO::VertexData(HingeVerts.size() * sizeof(ngl::Vec3), HingeVerts[0].m_x));
     m_vaoHinge->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
     m_vaoHinge->setNumIndices(HingeVerts.size());
