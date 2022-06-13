@@ -61,6 +61,9 @@ void NGLScene::initializeGL()
 void NGLScene::timerEvent(QTimerEvent *_timer)
 {
   m_hairTest->update(0.02);
+  m_hairTest->update(0.02);
+  m_hairTest->update(0.02);
+  m_hairTest->update(0.02);
   update();
 }
 
