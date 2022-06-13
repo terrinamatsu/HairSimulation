@@ -8,9 +8,20 @@
 struct HairMass
 {
   ngl::Vec3 m_position;
+  ngl::Vec3 m_force;
+  ngl::Vec3 m_accelleration;
+  ngl::Vec3 m_velocity;
+
+  HairMass* m_parentHair = nullptr;
+
   HairMass(ngl::Vec3 _position)
   {
     m_position = _position;
+  }
+
+  ResetForce()
+  {
+    m_force = ngl::Vec3();
   }
 };
 
@@ -18,6 +29,8 @@ struct HairSpring
 {
   HairMass* LeftMass;
   HairMass* RightMass;
+  float restLength = 2.0f;
+  float springConstant = 2.0f;
 };
 
 struct HairHinge

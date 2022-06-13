@@ -72,6 +72,8 @@ private:
     //----------------------------------------------------------------------------------------------------------------------
     void mouseReleaseEvent ( QMouseEvent *_event ) override;
 
+    void timerEvent(QTimerEvent *_timer) override;
+
     //----------------------------------------------------------------------------------------------------------------------
     /// @brief this method is called everytime the mouse wheel is moved
     /// inherited from QObject and overridden here.

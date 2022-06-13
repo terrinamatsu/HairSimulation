@@ -12,9 +12,10 @@ Hair::Hair()
   m_vaoHinge = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
 
   // Generate Hair 
-  m_hairNodes.push_back(HairMass({8,10,5}));
-  m_hairNodes.push_back(HairMass({8,8,5}));
-  m_hairNodes.push_back(HairMass({8,6,5}));
+  m_hairNodes.push_back(HairMass({0,10,0}));
+  m_hairNodes.back().m_isBaseNode = true;
+  m_hairNodes.push_back(HairMass({2,8,1}));
+  m_hairNodes.push_back(HairMass({4,6,2}));
 
   // Generate Springs
   HairSpring spr1 = HairSpring();
@@ -32,6 +33,44 @@ Hair::Hair()
 void Hair::update(float _dt)
 {
   // And now for the complicated bit...
+
+  float hairNodeMass = 5;
+
+  for(auto& spring : m_hairSprings)
+  {
+    ngl::Vec3 springForce;
+    ngl::Vec3 springLength = spring.LeftMass - spring.RightMass;
+    springForce = spring.springConstant * (spring.restLength - springLength);
+
+    // Add damping
+    springForce = springForce - (0.5f * springForce);
+
+    spring.LeftMass->m_force += springForce;
+    spring.RightMass->m_force -= springForce;
+  }
+
+  for(auto& i = 1; i < m_hairNodes.size(); ++i)
+  {
+    ngl::Vec3 Force;
+    // Spring
+    
+    // Hinge
+
+    // Gravity
+
+    // Aerodynamic Drag
+
+    // Newton's Second Law
+  }
+
+  // add accelleration & reset hair forces.
+  for(auto& hair : m_hairNodes)
+  {
+    hair.m_accelleration = hair.m_force / hairNodeMass;
+    hair.m_velocity += hair.m_accelleration * _dt;
+    hair.m_position += hair.m_velocity * _dt;
+    hair.ResetForce();
+  }
 }
 
 void Hair::render() const

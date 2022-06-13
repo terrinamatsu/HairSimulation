@@ -49,6 +49,8 @@ void NGLScene::initializeGL()
   // Initialise Hair
   m_hairTest = std::make_unique<Hair>();
 
+  startTimer(10);
+
   // Create Circle
   ngl::VAOPrimitives::createSphere("sphere", 0.5f, 20);
 
@@ -56,7 +58,11 @@ void NGLScene::initializeGL()
   m_view = ngl::lookAt({0,10,10}, {0,0,0}, {0,1,0});
 }
 
-
+void NGLScene::timerEvent(QTimerEvent *_timer)
+{
+  m_hairTest->update(0.02);
+  update();
+}
 
 void NGLScene::paintGL()
 {
