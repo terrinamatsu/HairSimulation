@@ -18,12 +18,12 @@ Hair::Hair()
 
   // Generate Springs
   HairSpring spr1 = HairSpring();
-  spr1.LeftMass = *m_hairNodes[0];
-  spr1.RightMass = *m_hairNodes[1];
+  spr1.LeftMass = &m_hairNodes[0];
+  spr1.RightMass = &m_hairNodes[1];
 
   HairSpring spr2 = HairSpring();
-  spr2.LeftMass = *m_hairNodes[1];
-  spr2.RightMass = *m_hairNodes[2];
+  spr2.LeftMass = &m_hairNodes[1];
+  spr2.RightMass = &m_hairNodes[2];
 
   m_hairSprings.push_back(spr1);
   m_hairSprings.push_back(spr2);
