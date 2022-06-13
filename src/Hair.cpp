@@ -9,7 +9,7 @@ Hair::Hair()
   // Setup VAOs
   m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
   m_vaoSpring = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_LINES);
-  m_vaoHinge = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
+  m_vaoHinge = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_LINES);
 
   // Generate Hair 
   m_hairNodes.push_back(HairMass({0,10,0}));
@@ -29,6 +29,16 @@ Hair::Hair()
 
   m_hairSprings.push_back(spr1);
   m_hairSprings.push_back(spr2);
+
+  // Generate Hinges
+  HairHinge hg1 = HairHinge;
+  hg1.LeftMass = &m_hairNodes[0];
+  hg1.LeftMass = &m_hairNodes[1];
+  hg1.LeftMass = &m_hairNodes[2];
+
+
+  //\ refactor into for loop to create many hairs of different lengths
+  //\ also attach hairs to head. 
 }
 
 void Hair::update(float _dt)
@@ -101,15 +111,40 @@ void Hair::render() const
     m_vao->unbind();
 
     // Hair Springs
+    std::vector<ngl::Vec3> SpringVerts;
+    for(auto Spring : m_hairSprings)
+    {
+      SpringVerts.push_back(Spring.LeftMass->m_position);
+      SpringVerts.push_back(Spring.RightMass->m_position);
+    }
+
     glLineWidth(5);
 
     m_vaoSpring->bind();
 
-    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(m_hairSprings.size() * sizeof(HairSpring), m_hairSprings[0].LeftMass->m_position.m_x));
-    m_vaoSpring->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(HairMass), 0);
+    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0]->m_position.m_x));
+    m_vaoSpring->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
-    m_vaoSpring->setNumIndices(m_hairSprings.size() * 2);
+    m_vaoSpring->setNumIndices(SpringVerts.size() * 2);
 
     m_vaoSpring->draw();
     m_vaoSpring->unbind();
+
+    // Hair Hinge
+    std::vector<ngl::Vec3> HingeVerts;
+    for(auto Hinge : m_hairHinges)
+    {
+      HingeVerts.push_back(Hinge.LeftMass->m_position);
+      HingeVerts.push_back(Hinge.RightMass->m_position);
+    }
+
+    m_vaoHinge->bind();
+
+    m_vaoHinge->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0]->m_position.m_x));
+    m_vaoHinge->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
+
+    m_vaoHinge->setNumIndices(SpringVerts.size() * 2);
+
+    m_vaoHinge->draw();
+    m_vaoHinge->unbind();
 }

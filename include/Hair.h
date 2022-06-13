@@ -36,6 +36,7 @@ struct HairSpring
 struct HairHinge
 {
   HairMass* LeftMass;
+  HairMass* MiddleMass;
   HairMass* RightMass;
 };
 
