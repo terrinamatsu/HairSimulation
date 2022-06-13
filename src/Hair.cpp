@@ -69,7 +69,10 @@ void Hair::update(float _dt)
   {
     hair.m_accelleration = hair.m_force / hairNodeMass;
     hair.m_velocity += hair.m_accelleration * _dt;
-    hair.m_position += hair.m_velocity * _dt;
+    if(hair.m_parentHair != nullptr)
+    {
+      hair.m_position += hair.m_velocity * _dt;
+    }
     hair.ResetForce();
   }
 }
