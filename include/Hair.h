@@ -33,6 +33,7 @@ class Hair
     Hair();
     ~Hair() = default;
 
+    void update(float _dt);
     void render() const;
 
   private:
@@ -41,6 +42,9 @@ class Hair
     std::vector<HairHinge> m_hairHinges;
 
     std::unique_ptr<ngl::AbstractVAO> m_vao;
+    std::unique_ptr<ngl::AbstractVAO> m_vaoSpring;
+    std::unique_ptr<ngl::AbstractVAO> m_vaoHinge;
+
 
     float m_dampingConstant = 0.5;
 };
