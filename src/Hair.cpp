@@ -14,9 +14,9 @@ Hair::Hair()
   // Generate Hair 
   m_hairNodes.push_back(HairMass({0,10,0}));
   m_hairNodes.push_back(HairMass({2,8,1}));
-  m_hairNodes.back().m_parentHair = m_hairNodes[0];
+  m_hairNodes.back().m_parentHair = &m_hairNodes[0];
   m_hairNodes.push_back(HairMass({4,6,2}));
-  m_hairNodes.back().m_parentHair = m_hairNodes[1];
+  m_hairNodes.back().m_parentHair = &m_hairNodes[1];
 
   // Generate Springs
   HairSpring spr1 = HairSpring();
