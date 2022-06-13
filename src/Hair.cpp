@@ -3,6 +3,7 @@
 #include <ngl/Util.h>
 #include <ngl/ShaderLib.h>
 #include <ngl/VAOFactory.h>
+#include <math.h>
 
 Hair::Hair()
 {
@@ -47,6 +48,8 @@ void Hair::update(float _dt)
 
   float hairNodeMass = 5;
   float dragDampingConstant = 5.0f;
+  float hingeConstant = 5.0f;
+  float hingeDampingConstant = 2.0f;
 
   // Spring
   for(auto& spring : m_hairSprings)
@@ -67,7 +70,19 @@ void Hair::update(float _dt)
   // Hinge
   for(auto hinge : m_hairHinges)
   {
+    ngl::Vec3 leftVec = hinge.LeftMass->m_position - hinge.MiddleMass->m_position;
+    ngl::Vec3 rightVec = hinge.MiddleMass->m_position - hinge.RightMass->m_position;
 
+    float leftMag = sqrt(leftVec.m_x * leftVec.m_x + leftVec.m_y * leftVec.m_y + leftVec.m_z * leftVec.m_z);
+    float rightMag = sqrt(rightVec.m_x * rightVec.m_x + rightVec.m_y * rightVec.m_y + rightVec.m_z * rightVec.m_z);
+
+    float hingeTheta = acosf(leftVec.dot(rightVec) / (abs(leftMag) * abs(rightMag)));
+
+    float hingeForce = hingeConstant * hingeTheta - hingeDampingConstant * (hingeConstant * hingeTheta);
+
+    hinge.LeftMass->m_force += hingeForce;
+    hinge.MiddleMass->m_force -= 2 * hingeForce;
+    hinge.RightMass->m_force += hingeForce;
   }
 
   // Gravity
