@@ -45,7 +45,7 @@ Hair::Hair()
 void Hair::update(float _dt)
 {
   // Initial moving hair 
-  float movement = (m_isHairMovingRight) ? (1.0f * _dt) | (-1.0f * _dt);  
+  float movement = (m_isHairMovingRight) ? (1.0f * _dt) : (-1.0f * _dt);  
   m_hairNodes[0].m_position.m_x += movement;
   if(m_hairNodes[0].m_position.m_x > 20)
   {
