@@ -30,7 +30,7 @@ struct HairSpring
   HairMass* LeftMass;
   HairMass* RightMass;
   float restLength = 2.0f;
-  float springConstant = 2.0f;
+  float springConstant = 10.0f;
 };
 
 struct HairHinge

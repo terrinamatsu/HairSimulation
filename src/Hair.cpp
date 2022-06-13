@@ -43,7 +43,9 @@ void Hair::update(float _dt)
   {
     ngl::Vec3 springForce;
     ngl::Vec3 springLength = spring.LeftMass - spring.RightMass;
-    springForce = spring.springConstant * (spring.restLength - springLength.length());
+    ngl::Vec3 normalSpringLength = springLength;
+    normalSpringLength.normalize();
+    springForce = normalSpringLength * (spring.springConstant * (spring.restLength - springLength.length()));
 
     // Add damping
     springForce = springForce - (0.5f * springForce);
