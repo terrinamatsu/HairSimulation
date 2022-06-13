@@ -10,9 +10,9 @@ Hair::Hair()
   m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
 
   // Generate Hair 
-  m_hairNodes.push_back(HairMass(10,10,10));
-  m_hairNodes.push_back(HairMass(8,8,10));
-  m_hairNodes.push_back(HairMass(8,8,10));
+  m_hairNodes.push_back(HairMass({10,10,10}));
+  m_hairNodes.push_back(HairMass({8,8,10}));
+  m_hairNodes.push_back(HairMass({8,8,10}));
 }
 
 void Hair::render() const
