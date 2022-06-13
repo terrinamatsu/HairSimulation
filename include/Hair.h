@@ -19,7 +19,7 @@ struct HairMass
     m_position = _position;
   }
 
-  ResetForce()
+  void ResetForce()
   {
     m_force = ngl::Vec3();
   }
