@@ -31,7 +31,7 @@ Hair::Hair()
   m_hairSprings.push_back(spr2);
 
   // Generate Hinges
-  HairHinge hg1 = HairHinge;
+  HairHinge hg1 = HairHinge();
   hg1.LeftMass = &m_hairNodes[0];
   hg1.LeftMass = &m_hairNodes[1];
   hg1.LeftMass = &m_hairNodes[2];
@@ -122,10 +122,10 @@ void Hair::render() const
 
     m_vaoSpring->bind();
 
-    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0]->m_position.m_x));
+    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0].m_position.m_x));
     m_vaoSpring->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
-    m_vaoSpring->setNumIndices(SpringVerts.size() * 2);
+    m_vaoSpring->setNumIndices(SpringVerts.size());
 
     m_vaoSpring->draw();
     m_vaoSpring->unbind();
@@ -140,10 +140,10 @@ void Hair::render() const
 
     m_vaoHinge->bind();
 
-    m_vaoHinge->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0]->m_position.m_x));
+    m_vaoHinge->setData(ngl::SimpleVAO::VertexData(HingeVerts.size() * sizeof(ngl::Vec3), HingeVerts[0].m_position.m_x));
     m_vaoHinge->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
-    m_vaoHinge->setNumIndices(SpringVerts.size() * 2);
+    m_vaoHinge->setNumIndices(HingeVerts.size());
 
     m_vaoHinge->draw();
     m_vaoHinge->unbind();
