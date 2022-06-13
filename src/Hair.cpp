@@ -13,9 +13,10 @@ Hair::Hair()
 
   // Generate Hair 
   m_hairNodes.push_back(HairMass({0,10,0}));
-  m_hairNodes.back().m_isBaseNode = true;
   m_hairNodes.push_back(HairMass({2,8,1}));
+  m_hairNodes.back().m_parentHair = m_hairNodes[0];
   m_hairNodes.push_back(HairMass({4,6,2}));
+  m_hairNodes.back().m_parentHair = m_hairNodes[1];
 
   // Generate Springs
   HairSpring spr1 = HairSpring();
@@ -40,7 +41,7 @@ void Hair::update(float _dt)
   {
     ngl::Vec3 springForce;
     ngl::Vec3 springLength = spring.LeftMass - spring.RightMass;
-    springForce = spring.springConstant * (spring.restLength - springLength);
+    springForce = spring.springConstant * (spring.restLength - springLength.length());
 
     // Add damping
     springForce = springForce - (0.5f * springForce);
@@ -49,7 +50,7 @@ void Hair::update(float _dt)
     spring.RightMass->m_force -= springForce;
   }
 
-  for(auto& i = 1; i < m_hairNodes.size(); ++i)
+  for(auto i = 1; i < m_hairNodes.size(); ++i)
   {
     ngl::Vec3 Force;
     // Spring
