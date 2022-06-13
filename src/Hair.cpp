@@ -44,11 +44,23 @@ Hair::Hair()
 
 void Hair::update(float _dt)
 {
+  // Initial moving hair 
+  float movement = (m_isHairMovingRight) ? (1.0f * _dt) | (-1.0f * _dt);  
+  m_hairNodes[0].m_position.m_x += movement;
+  if(m_hairNodes[0].m_position.m_x > 20)
+  {
+    m_isHairMovingRight = false;
+  }
+  else if(m_hairNodes[0].m_position.m_x < -20)
+  {
+    m_isHairMovingRight = true;
+  }
+
   // And now for the complicated bit...
 
   float hairNodeMass = 5;
   float dragDampingConstant = 5.0f;
-  float hingeConstant = 5.0f;
+  float hingeConstant = 10.0f;
   float hingeDampingConstant = 2.0f;
 
   // Spring

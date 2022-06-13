@@ -59,6 +59,7 @@ class Hair
     std::unique_ptr<ngl::AbstractVAO> m_vaoSpring;
     std::unique_ptr<ngl::AbstractVAO> m_vaoHinge;
 
+    bool m_isHairMovingRight = true;
 
     float m_dampingConstant = 0.5;
 };
