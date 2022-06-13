@@ -42,7 +42,7 @@ void Hair::update(float _dt)
   for(auto& spring : m_hairSprings)
   {
     ngl::Vec3 springForce;
-    ngl::Vec3 springLength = spring.LeftMass - spring.RightMass;
+    ngl::Vec3 springLength = spring.LeftMass->m_position - spring.RightMass->m_position;
     ngl::Vec3 normalSpringLength = springLength;
     normalSpringLength.normalize();
     springForce = normalSpringLength * (spring.springConstant * (spring.restLength - springLength.length()));
