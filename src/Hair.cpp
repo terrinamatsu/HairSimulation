@@ -46,8 +46,8 @@ void Hair::update(float _dt)
     // Add damping
     springForce = springForce - (0.5f * springForce);
 
-    spring.LeftMass->m_force += springForce;
-    spring.RightMass->m_force -= springForce;
+    spring.LeftMass->m_force -= springForce;
+    spring.RightMass->m_force += springForce;
   }
 
   for(auto i = 1; i < m_hairNodes.size(); ++i)
