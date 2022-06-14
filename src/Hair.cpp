@@ -92,9 +92,17 @@ void Hair::update(float _dt)
 
     float hingeForce = hingeConstant * hingeTheta - hingeDampingConstant * (hingeConstant * hingeTheta);
 
-    hinge.LeftMass->m_force += hingeForce;
-    hinge.MiddleMass->m_force -= 2 * hingeForce;
-    hinge.RightMass->m_force += hingeForce;
+    ngl::Vec3 LeftForceVec = rightVec * -1;
+    LeftForceVec.normalize();
+    LeftForceVec = LeftForceVec - leftVec.normalize();
+
+    ngl::Vec3 RightForceVec = leftVec * -1;
+    RightForceVec.normalize();
+    RightForceVec = RightForceVec - rightVec.normalize();
+
+    hinge.LeftMass->m_force += hingeForce * LeftForceVec;
+    hinge.MiddleMass->m_force -= 2 * hingeForce * (LeftForceVec + RightForceVec).normalize();
+    hinge.RightMass->m_force += hingeForce * RightForceVec;
   }
 
   // Gravity
@@ -118,7 +126,7 @@ void Hair::update(float _dt)
     {
       hair.m_position += hair.m_velocity * _dt;
     }
-    //hair.ResetForce();
+    hair.ResetForce();
   }
 }
 
