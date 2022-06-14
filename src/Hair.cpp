@@ -40,7 +40,7 @@ Hair::Hair()
   // m_hairHinges.push_back(hg1);
 
 
-  for(auto i = 1; i < 1; i+=2)
+  for(auto i = 1; i < 2; i+=2)
   {
     m_hairNodes.push_back(HairMass({i * 2, i * 2, i * 2}));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i - 1];
