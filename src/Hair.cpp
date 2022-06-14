@@ -37,6 +37,34 @@ Hair::Hair()
   hg1.MiddleMass = &m_hairNodes[1];
   hg1.RightMass = &m_hairNodes[2];
 
+  m_hairHinges.push_back(hg1);
+
+
+  // for(auto i = 1; i < 100; i+=2)
+  // {
+  //   m_hairNodes.push_back(HairMass({2 * i, 10 - i,1}));
+  //   m_hairNodes.back().m_parentHair = &m_hairNodes[i - 1];
+  //   m_hairNodes.push_back(HairMass({2 * i + 1, 10 - i - 1, 2}));
+  //   m_hairNodes.back().m_parentHair = &m_hairNodes[i];
+
+  //   // Generate Springs
+  //   HairSpring spr1 = HairSpring();
+  //   spr1.LeftMass = &m_hairNodes[i-1];
+  //   spr1.RightMass = &m_hairNodes[i];
+
+  //   HairSpring spr2 = HairSpring();
+  //   spr2.LeftMass = &m_hairNodes[i-1];
+  //   spr2.RightMass = &m_hairNodes[i+1];
+
+  //   m_hairSprings.push_back(spr1);
+  //   m_hairSprings.push_back(spr2);
+
+  //   // Generate Hinges
+  //   HairHinge hg1 = HairHinge();
+  //   hg1.LeftMass = &m_hairNodes[i-1];
+  //   hg1.MiddleMass = &m_hairNodes[i];
+  //   hg1.RightMass = &m_hairNodes[i+1];
+  // }
 
   //\ refactor into for loop to create many hairs of different lengths
   //\ also attach hairs to head. 
