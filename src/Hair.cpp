@@ -15,11 +15,11 @@ Hair::Hair()
   // Generate Hair 
   m_hairNodes.push_back(HairMass({0,10,0}));
 
-  for(auto i = 1; i < 100; ++i)
+  for(auto i = 1; i < 100; i+=2)
   {
-    m_hairNodes.push_back(HairMass({2,8,1}));
+    m_hairNodes.push_back(HairMass({2 * i, 10 - i,1}));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i - 1];
-    m_hairNodes.push_back(HairMass({4,6,2}));
+    m_hairNodes.push_back(HairMass({2 * i + 1, 10 - i - 1, 2}));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i];
 
     // Generate Springs
@@ -37,8 +37,8 @@ Hair::Hair()
     // Generate Hinges
     HairHinge hg1 = HairHinge();
     hg1.LeftMass = &m_hairNodes[i-1];
-    hg1.LeftMass = &m_hairNodes[i];
-    hg1.LeftMass = &m_hairNodes[i+1];
+    hg1.MiddleMass = &m_hairNodes[i];
+    hg1.RightMass = &m_hairNodes[i+1];
   }
 
   
