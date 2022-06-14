@@ -122,23 +122,23 @@ void Hair::update(float _dt)
 
     float hingeForce = hingeConstant * hingeTheta - hingeDampingConstant * (hingeConstant * hingeTheta);
 
-    leftVec.normalize();
-    rightVec.normalize();
+    // leftVec.normalize();
+    // rightVec.normalize();
 
-    ngl::Vec3 LeftForceVec = rightVec * -1;
-    LeftForceVec.normalize();
-    LeftForceVec = LeftForceVec - leftVec;
+    // ngl::Vec3 LeftForceVec = rightVec * -1;
+    // LeftForceVec.normalize();
+    // LeftForceVec = LeftForceVec - leftVec;
 
-    ngl::Vec3 RightForceVec = leftVec * -1;
-    RightForceVec.normalize();
-    RightForceVec = RightForceVec - rightVec;
+    // ngl::Vec3 RightForceVec = leftVec * -1;
+    // RightForceVec.normalize();
+    // RightForceVec = RightForceVec - rightVec;
 
-    ngl::Vec3 RightLeftForceVec = LeftForceVec + RightForceVec;
-    RightLeftForceVec.normalize();
+    // ngl::Vec3 RightLeftForceVec = LeftForceVec + RightForceVec;
+    // RightLeftForceVec.normalize();
 
-    hinge.LeftMass->m_force += hingeForce * LeftForceVec;
-    hinge.MiddleMass->m_force -= 2 * hingeForce * RightLeftForceVec;
-    hinge.RightMass->m_force += hingeForce * RightForceVec;
+    hinge.LeftMass->m_force += hingeForce;// * LeftForceVec;
+    hinge.MiddleMass->m_force -= 2 * hingeForce;// * RightLeftForceVec;
+    hinge.RightMass->m_force += hingeForce;// * RightForceVec;
   }
 
   // Gravity
