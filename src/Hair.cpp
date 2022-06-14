@@ -114,13 +114,13 @@ void Hair::update(float _dt)
   // Gravity
   for(auto& hair : m_hairNodes)
   {
-    hair.m_force += hairNodeMass * ngl::Vec3(0.0f, -9.8f, 0.0f) * 0.2;
+    //hair.m_force += hairNodeMass * ngl::Vec3(0.0f, -9.8f, 0.0f) * 0.2;
   }
 
   // Aerodynamic Drag
   for(auto& hair : m_hairNodes)
   {
-    hair.m_force -= hair.m_velocity * dragDampingConstant;
+    //hair.m_force -= hair.m_velocity * dragDampingConstant;
   }
 
   // Newton's Second Law (accelleration) & reset hair forces.
