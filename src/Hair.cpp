@@ -14,28 +14,34 @@ Hair::Hair()
 
   // Generate Hair 
   m_hairNodes.push_back(HairMass({0,10,0}));
-  m_hairNodes.push_back(HairMass({2,8,1}));
-  m_hairNodes.back().m_parentHair = &m_hairNodes[0];
-  m_hairNodes.push_back(HairMass({4,6,2}));
-  m_hairNodes.back().m_parentHair = &m_hairNodes[1];
 
-  // Generate Springs
-  HairSpring spr1 = HairSpring();
-  spr1.LeftMass = &m_hairNodes[0];
-  spr1.RightMass = &m_hairNodes[1];
+  for(auto i = 1; i < 100; ++i)
+  {
+    m_hairNodes.push_back(HairMass({2,8,1}));
+    m_hairNodes.back().m_parentHair = &m_hairNodes[i - 1];
+    m_hairNodes.push_back(HairMass({4,6,2}));
+    m_hairNodes.back().m_parentHair = &m_hairNodes[i];
 
-  HairSpring spr2 = HairSpring();
-  spr2.LeftMass = &m_hairNodes[1];
-  spr2.RightMass = &m_hairNodes[2];
+    // Generate Springs
+    HairSpring spr1 = HairSpring();
+    spr1.LeftMass = &m_hairNodes[i-1];
+    spr1.RightMass = &m_hairNodes[i];
 
-  m_hairSprings.push_back(spr1);
-  m_hairSprings.push_back(spr2);
+    HairSpring spr2 = HairSpring();
+    spr2.LeftMass = &m_hairNodes[i-1];
+    spr2.RightMass = &m_hairNodes[i+1];
 
-  // Generate Hinges
-  HairHinge hg1 = HairHinge();
-  hg1.LeftMass = &m_hairNodes[0];
-  hg1.LeftMass = &m_hairNodes[1];
-  hg1.LeftMass = &m_hairNodes[2];
+    m_hairSprings.push_back(spr1);
+    m_hairSprings.push_back(spr2);
+
+    // Generate Hinges
+    HairHinge hg1 = HairHinge();
+    hg1.LeftMass = &m_hairNodes[i-1];
+    hg1.LeftMass = &m_hairNodes[i];
+    hg1.LeftMass = &m_hairNodes[i+1];
+  }
+
+  
 
 
   //\ refactor into for loop to create many hairs of different lengths
@@ -120,7 +126,7 @@ void Hair::update(float _dt)
   // Aerodynamic Drag
   for(auto& hair : m_hairNodes)
   {
-    //hair.m_force -= hair.m_velocity * dragDampingConstant;
+    hair.m_force -= hair.m_velocity * dragDampingConstant;
   }
 
   // Newton's Second Law (accelleration) & reset hair forces.
