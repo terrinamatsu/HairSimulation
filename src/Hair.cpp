@@ -181,41 +181,41 @@ void Hair::render() const
     m_vao->draw();
     m_vao->unbind();
 
-    // Hair Springs
-    std::vector<ngl::Vec3> SpringVerts;
-    for(auto Spring : m_hairSprings)
-    {
-      SpringVerts.push_back(Spring.LeftMass->m_position);
-      SpringVerts.push_back(Spring.RightMass->m_position);
-    }
+    // // Hair Springs
+    // std::vector<ngl::Vec3> SpringVerts;
+    // for(auto Spring : m_hairSprings)
+    // {
+    //   SpringVerts.push_back(Spring.LeftMass->m_position);
+    //   SpringVerts.push_back(Spring.RightMass->m_position);
+    // }
 
-    glLineWidth(5);
+    // glLineWidth(5);
 
-    m_vaoSpring->bind();
+    // m_vaoSpring->bind();
 
-    m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0].m_x));
-    m_vaoSpring->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
+    // m_vaoSpring->setData(ngl::SimpleVAO::VertexData(SpringVerts.size() * sizeof(ngl::Vec3), SpringVerts[0].m_x));
+    // m_vaoSpring->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
-    m_vaoSpring->setNumIndices(SpringVerts.size());
+    // m_vaoSpring->setNumIndices(SpringVerts.size());
 
-    m_vaoSpring->draw();
-    m_vaoSpring->unbind();
+    // m_vaoSpring->draw();
+    // m_vaoSpring->unbind();
 
-    // Hair Hinge
-    std::vector<ngl::Vec3> HingeVerts;
-    for(auto Hinge : m_hairHinges)
-    {
-      HingeVerts.push_back(Hinge.LeftMass->m_position);
-      HingeVerts.push_back(Hinge.RightMass->m_position);
-    }
+    // // Hair Hinge
+    // std::vector<ngl::Vec3> HingeVerts;
+    // for(auto Hinge : m_hairHinges)
+    // {
+    //   HingeVerts.push_back(Hinge.LeftMass->m_position);
+    //   HingeVerts.push_back(Hinge.RightMass->m_position);
+    // }
 
-    m_vaoHinge->bind();
+    // m_vaoHinge->bind();
 
-    m_vaoHinge->setData(ngl::SimpleVAO::VertexData(HingeVerts.size() * sizeof(ngl::Vec3), HingeVerts[0].m_x));
-    m_vaoHinge->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
+    // m_vaoHinge->setData(ngl::SimpleVAO::VertexData(HingeVerts.size() * sizeof(ngl::Vec3), HingeVerts[0].m_x));
+    // m_vaoHinge->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(ngl::Vec3), 0);
 
-    m_vaoHinge->setNumIndices(HingeVerts.size());
+    // m_vaoHinge->setNumIndices(HingeVerts.size());
 
-    m_vaoHinge->draw();
-    m_vaoHinge->unbind();
+    // m_vaoHinge->draw();
+    // m_vaoHinge->unbind();
 }
