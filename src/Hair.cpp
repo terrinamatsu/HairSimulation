@@ -60,8 +60,8 @@ void Hair::update(float _dt)
 
   float hairNodeMass = 5;
   float dragDampingConstant = 5.0f;
-  float hingeConstant = 10.0f;
-  float hingeDampingConstant = 2.0f;
+  float hingeConstant = 20.0f;
+  float hingeDampingConstant = 1.0f;
 
   // Spring
   for(auto& spring : m_hairSprings)
