@@ -44,7 +44,7 @@ Hair::Hair()
   {
     m_hairNodes.push_back(HairMass(ngl::Vec3(i * 2, - i * 2, i * 2) + m_hairNodes[0].m_position));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i - 1];
-    m_hairNodes.push_back(HairMass(ngl::Vec3(i * 2 + 1.0f, - i * 2 + 1.0f, i * 2 + 1.0f) + m_hairNodes[0].m_position)));
+    m_hairNodes.push_back(HairMass(ngl::Vec3(i * 2 + 1.0f, - i * 2 + 1.0f, i * 2 + 1.0f) + m_hairNodes[0].m_position));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i];
 
     // Generate Springs
