@@ -112,7 +112,7 @@ void Hair::update(float _dt)
   // Newton's Second Law (accelleration) & reset hair forces.
   for(auto& hair : m_hairNodes)
   {
-    hair.m_accelleration = hair.m_force / hairNodeMass;
+    hair.m_accelleration += hair.m_force / hairNodeMass;
     hair.m_velocity += hair.m_accelleration * _dt;
     if(hair.m_parentHair != nullptr)
     {
