@@ -42,9 +42,9 @@ Hair::Hair()
 
   for(auto i = 1; i < 20; i+=2)
   {
-    m_hairNodes.push_back(HairMass({2.0f * i, 10.0f - i,  i * 1.0f}));
+    m_hairNodes.push_back(HairMass({i * 2, i * 2, i * 2}));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i - 1];
-    m_hairNodes.push_back(HairMass({2.0f * i + 1.0f, 10.0f - i - 1.0f, i * 2.0f}));
+    m_hairNodes.push_back(HairMass({i * 2 + 1, i * 2 + 1, i * 2 + 1}));
     m_hairNodes.back().m_parentHair = &m_hairNodes[i];
 
     // Generate Springs
